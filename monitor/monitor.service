@@ -1,0 +1,12 @@
+# This service unit is for finding key-word in log file
+
+[Unit]
+Description=Find key-word in log file
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/sysconfig/monitor.config
+ExecStart=/vagrant/monitor.sh
+
+[Install]
+WantedBy=multi-user.target
