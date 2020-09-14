@@ -1,4 +1,5 @@
-# This service unit is for finding key-word in log file
+# Сервис, который запускает скрипт на наличие ключевого слова в лог файле
+# Лог файл и ключевое слово задаются переменными $KEYWORD $PATHLO в строке EnvironmentFile
 
 [Unit]
 Description=Find key-word in log file
