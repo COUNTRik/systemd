@@ -1,0 +1,12 @@
+# Таймер для сервиса monitor.service, который запускает его раз в 30 секунд
+
+[Unit]
+Description=Find key-word in log file
+Requires=monitor.service
+
+[Timer]
+Unit=monitor.service
+OnUnitActiveSec=30s
+
+[Install]
+WantedBy=timers.target
