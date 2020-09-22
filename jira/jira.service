@@ -2,7 +2,13 @@
 Description=Atlassian Jira
 After=network.target
 
-[Service] 
+[Service]
+CPUAccounting=true
+CPUQuota=100%
+MemoryAccounting=true
+LimitMemory=512M
+BlockIOAccounting=true
+BlockIOWeight=500
 Type=forking
 User=jira
 PIDFile=/opt/atlassian/jira/work/catalina.pid
