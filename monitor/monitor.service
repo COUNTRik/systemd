@@ -7,7 +7,7 @@ Description=Find key-word in log file
 [Service]
 Type=oneshot
 EnvironmentFile=/etc/sysconfig/monitor.config
-ExecStart=/vagrant/monitor.sh
+ExecStart=/vagrant/monitor/monitor.sh
 
 [Install]
 WantedBy=multi-user.target
