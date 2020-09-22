@@ -53,5 +53,3 @@ Listen 8080
 Установим Jira по [инструкции](https://confluence.atlassian.com/adminjiraserver/installing-jira-applications-on-linux-938846841.html) с официального сайта.
 
 В директории *jira* лежит созданный unit.
-
-Примечание: для создания  
