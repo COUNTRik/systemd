@@ -23,7 +23,7 @@
 Устанавливаем spawn-fcgi и необходимые для него пакеты:
 
 ``
-#yum install epel-release -y && yum install spawn-fcgi php php-cli mod_fcgid 
+#yum install -y epel-release && yum install -y spawn-fcgi php php-cli mod_fcgid 
 ``
 
 *httpd -yetc/rc.d/init.d/spawn-fcg* - необходимый нам init скрипт, по которому надо создать unit
