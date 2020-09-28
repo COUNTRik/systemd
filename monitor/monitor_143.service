@@ -5,9 +5,12 @@
 Description=Find key-word in log file
 
 [Service]
-Type=oneshot
+Type=simple
+SuccessExitStatus=143
 EnvironmentFile=/etc/sysconfig/monitor.config
 ExecStart=/vagrant/monitor/monitor.sh
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
+
