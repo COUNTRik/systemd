@@ -17,15 +17,20 @@ systemctl daemon-reload
 
 systemctl enable monitor.timer
 
+systemctl start monitor.timer
+
 # spawn-fcgi
-yum install epel-release -y && yum install -y spawn-fcgi php php-cli mod_fcgid
+# yum install epel-release -y && yum install -y httpd mc vim
 
-cp /vagrant/spawn/spawn-fcgi /etc/sysconfig/spawn-fcgi
+# cp /vagrant/spawn/spawn-fcgi /etc/sysconfig/spawn-fcgi
 
-cp /vagrant/spawn/spawn-fcgi.service /etc/sysconfig/spawn-fcgi.service
+# cp /vagrant/spawn/spawn-fcgi.service /etc/sysconfig/spawn-fcgi.service
 
-systemctl daemon-reload
+# systemctl daemon-reload
 
-systemctl enable spawn-fcgi.service
+# systemctl enable spawn-fcgi.service
+
+# systemctl start spawn-fcgi.service
 
 # httpd
+# cp /vagrant/httpd/httpd@.service /usr/lib/systemd/system/httpd@.service
