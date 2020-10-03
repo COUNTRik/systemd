@@ -1,6 +1,3 @@
-# Сервис, который запускает скрипт в ExecStart на наличие ключевого слова в лог файле
-# Лог файл и ключевое слово задаются переменными $KEYWORD $PATHL в строке EnvironmentFile
-
 [Unit]
 Description=Find key-word in log file
 

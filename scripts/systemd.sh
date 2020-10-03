@@ -20,17 +20,32 @@ systemctl enable monitor.timer
 systemctl start monitor.timer
 
 # spawn-fcgi
-# yum install epel-release -y && yum install -y httpd mc vim
+yum install epel-release -y && yum install -y spawn-fcgi php php-cli mod_fcgid httpd mc vim
 
-# cp /vagrant/spawn/spawn-fcgi /etc/sysconfig/spawn-fcgi
+echo "SOCKET=/var/run/php-fcgi.sock" >> /etc/sysconfig/spawn-fcgi
+echo "OPTIONS=\"-u apache -g apache -s $SOCKET -S -M 0600 -C 32 -F 1 -P /var/run/spawn-fcgi.pid -- /usr/bin/php-cgi\"" >> /etc/sysconfig/spawn-fcgi
 
-# cp /vagrant/spawn/spawn-fcgi.service /etc/sysconfig/spawn-fcgi.service
+cp /vagrant/spawn/spawn-fcgi.service /etc/sysconfig/spawn-fcgi.service
 
-# systemctl daemon-reload
+systemctl daemon-reload
 
-# systemctl enable spawn-fcgi.service
+systemctl enable spawn-fcgi.service
 
-# systemctl start spawn-fcgi.service
+systemctl start spawn-fcgi.service
 
 # httpd
-# cp /vagrant/httpd/httpd@.service /usr/lib/systemd/system/httpd@.service
+cp /vagrant/httpd/httpd@.service /etc/systemd/system/httpd@.service
+
+cp /vagrant/httpd/httpd-80 /etc/sysconfig/httpd-80
+cp /vagrant/httpd/httpd-8080 /etc/sysconfig/httpd-8080
+
+cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/80.conf
+sed  's!Listen 80!Listen 8080!' /etc/httpd/conf/httpd.conf > /etc/httpd/conf/8080.conf
+echo "PidFile /var/run/httpd/httpd-8080.pid" >> /etc/httpd/conf/8080.conf
+systemctl daemon-reload
+
+systemctl enable httpd@80
+systemctl enable httpd@8080
+
+systemctl start httpd@80
+systemctl start httpd@8080
