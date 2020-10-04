@@ -1,0 +1,9 @@
+[Unit]
+Description=Start instances httpd 
+
+[Service]
+Type=oneshot
+ExecStart=/vagrant/httpd/start_httpd.sh
+
+[Install]
+WantedBy=multi-user.target

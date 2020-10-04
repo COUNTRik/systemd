@@ -42,10 +42,14 @@ cp /vagrant/httpd/httpd-8080 /etc/sysconfig/httpd-8080
 cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/80.conf
 sed  's!Listen 80!Listen 8080!' /etc/httpd/conf/httpd.conf > /etc/httpd/conf/8080.conf
 echo "PidFile /var/run/httpd/httpd-8080.pid" >> /etc/httpd/conf/8080.conf
+
+cp /vagrant/httpd/start_httpd.service /etc/systemd/system/start_httpd.service
+
+chmod +x /vagrant/httpd/start_httpd.service
+
 systemctl daemon-reload
 
-systemctl enable httpd@80
-systemctl enable httpd@8080
+systemctl enable start_httpd.service
 
 systemctl start httpd@80
 systemctl start httpd@8080
