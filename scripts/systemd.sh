@@ -25,8 +25,7 @@ yum install epel-release -y && yum install -y spawn-fcgi php php-cli mod_fcgid h
 echo "SOCKET=/var/run/php-fcgi.sock" >> /etc/sysconfig/spawn-fcgi
 echo "OPTIONS=\"-u apache -g apache -s $SOCKET -S -M 0600 -C 32 -F 1 -P /var/run/spawn-fcgi.pid -- /usr/bin/php-cgi\"" >> /etc/sysconfig/spawn-fcgi
 
-cp /vagrant/spawn/spawn-fcgi.service /etc/sysconfig/spawn-fcgi.service
-
+cp /vagrant/spawn/spawn-fcgi.service /etc/systemd/system/spawn-fcgi.service
 systemctl daemon-reload
 
 systemctl enable spawn-fcgi.service
@@ -43,13 +42,10 @@ cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/80.conf
 sed  's!Listen 80!Listen 8080!' /etc/httpd/conf/httpd.conf > /etc/httpd/conf/8080.conf
 echo "PidFile /var/run/httpd/httpd-8080.pid" >> /etc/httpd/conf/8080.conf
 
-cp /vagrant/httpd/start_httpd.service /etc/systemd/system/start_httpd.service
-
-chmod +x /vagrant/httpd/start_httpd.service
-
 systemctl daemon-reload
 
-systemctl enable start_httpd.service
+systemctl enable httpd@80
+systemctl enable httpd@8080
 
 systemctl start httpd@80
 systemctl start httpd@8080
